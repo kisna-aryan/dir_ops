@@ -1,5 +1,6 @@
 import glob, os, torch
 import shutil
+import tqdm
 
 data = f"K:\\DL_git\\YOLO\\dataset_ADAS\\Udacity_self_driving"
 
@@ -45,7 +46,7 @@ if not os.path.exists(val_dir_txt):
 
 ################### split train & val ##################
 
-for f in train_dataset:
+for f in tqdm(train_dataset):
     shutil.copy(f, train_dir_img)
     filename_txt = os.path.join(source_txt, os.path.splitext(os.path.basename(f))[0] + '.txt')
     shutil.copy(filename_txt, train_dir_txt)
@@ -53,7 +54,7 @@ for f in train_dataset:
     # print(filename_txt)
     # break
 
-for f in val_dataset:
+for f in tqdm(val_dataset):
     shutil.copy(f, val_dir_img)
     filename_txt = os.path.join(source_txt, os.path.splitext(os.path.basename(f))[0] + '.txt')
     shutil.copy(filename_txt, val_dir_txt)
